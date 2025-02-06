@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+        
+        body {
+            margin: 0;
+            font-family: 'Dancing Script', cursive;
+            background: linear-gradient(45deg, #ff6b6b, #ff4081);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* CSS */
+.audio-prompt {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.prompt-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.prompt-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.prompt-content button {
+    padding: 0.8rem 1.5rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.prompt-content button:hover {
+    background-color: #45a049;
+}
+        .container {
+            background: rgba(255,255,255,0.9);
+            border-radius: 20px;
+            padding: 30px;
+            width: 80%;
+            max-width: 600px;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .image-box {
+            width: 300px;
+            height: 300px;
+            border: 4px solid #ff4081;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .scroll-text {
+            width: 100%;
+            height: 200px;
+            overflow-y: scroll;
+            padding: 10px;
+            text-align: center;
+            color: #ff4081;
+            font-size: 20px;
+        }
+        .rose {
+            position: fixed;
+            color: rgba(255,0,0,0.5);
+            font-size: 20px;
+            pointer-events: none;
+            animation: fall linear forwards;
+            z-index: 1;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-box">
+            <img src="/us.jpeg" alt="Our Love">
+        </div>
+        <div class="scroll-text">
+            **Hey Ovie,**
+            I just wanted to remind you that you're now officially trapped with me… FOREVER! 🚪🔒 There's no escape, no exit strategy, and definitely no refund policy. You signed up (knowingly or unknowingly) for a lifetime subscription of *my unlimited love, bad jokes, and random food cravings!* ❤️😂
+            So, will you accept your fate and be mine for a lifetime? (Spoiler alert: You have no choice. 😈)
+            Love you endlessly! 😘💖
+        </div>
+        <div class="button-container">
+            <button class="btn btn-yes" onclick="handleYes()">Click her to get Reward! ❤️</button>
+        </div>
+    </div>
+    <!-- HTML -->
+<div id="audioPrompt" class="audio-prompt">
+    <div class="prompt-content">
+        <p>Click to enable background music</p>
+        <button onclick="startMusic()">Enable Music</button>
+    </div>
+    <audio id="bgMusic" src="music.mp3" loop></audio>
+</div>
+
+    <script>
+        // Rose animation
+
+        // JavaScript
+function startMusic() {
+    const audio = document.getElementById('bgMusic');
+    const prompt = document.getElementById('audioPrompt');
+    
+    // Try to play the music
+    audio.play()
+        .then(() => {
+            // If successful, hide the prompt
+            prompt.style.display = 'none';
+        })
+        .catch((error) => {
+            console.log("Audio playback failed:", error);
+        });
+}
+
+// Optional: Add a function to control music
+function toggleMusic() {
+    const audio = document.getElementById('bgMusic');
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+    }
+}
+        function handleYes() {
+            window.location.href = 'third.html';
+        }
+        function createRose() {
+            const rose = document.createElement('div');
+            rose.classList.add('rose');
+            rose.innerHTML = '🌹';
+            rose.style.left = Math.random() * 100 + 'vw';
+            rose.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(rose);
+
+            setTimeout(() => {
+                rose.remove();
+            }, 5000);
+        }
+
+        // Create roses periodically
+        setInterval(createRose, 300);
+
+        // Auto-play music when page loads
+        window.addEventListener('load', () => {
+            const music = document.getElementById('backgroundMusic');
+            music.play().catch(error => {
+                console.log('Autoplay prevented. User interaction required.');
+            });
+        });
+    </script>
+</body>
+</html>
